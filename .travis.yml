@@ -19,4 +19,4 @@ script:
   - git config user.email ${EMAIL}
   - git add .
   - git commit -m "${MESSAGE}"
-  - git push --force --quiet https://${TOKEN}@${GIT_URI}.git master:${BRANCH}
+  - git push --force --quiet https://${TOKEN}@${GIT_URI}.git master:${BRANCH} 
