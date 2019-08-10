@@ -410,7 +410,7 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        749
+                        761
                     </div>
                     
 
@@ -446,42 +446,29 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 源码</span><br><span class="line">export function create&lt;T extends NamedStyles&lt;T&gt; | NamedStyles&lt;any&gt;&gt;(styles: T): T;    </span><br><span class="line">// 改进后的：</span><br><span class="line">export function create&lt;T extends NamedStyles&lt;T&gt;&gt;(styles: NamedStyles&lt;T&gt;): &#123; [P in keyof T]: RegisteredStyle&lt;T[P]&gt; &#125;;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>解决方案二，版本更新，最新版已修复此问题。（一开始我不知道已有版本不是最新版…）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">    // 因为之前装的版本是：&quot;@types/react-native&quot;: &quot;0.57.63&quot;</span><br><span class="line">    export function create&lt;T extends NamedStyles&lt;T&gt; | NamedStyles&lt;any&gt;&gt;(styles: T): T;</span><br><span class="line"></span><br><span class="line">    // 然后版本更新到：&quot;@types/react-native&quot;: &quot;^0.60.0&quot;</span><br><span class="line">    export function create&lt;T extends NamedStyles&lt;T&gt; | NamedStyles&lt;any&gt;&gt;(styles: T | NamedStyles&lt;T&gt;): T;</span><br><span class="line">    ``` </span><br><span class="line"></span><br><span class="line">3. 报错：` Unhandled JS Exception: TypeError: undefined is not an object (evaluating &apos;this._subscribableSubscriptions.forEach&apos;) `</span><br><span class="line"></span><br><span class="line">    解决方案：</span><br></pre></td></tr></table></figure>
-<p>// package.json文件里加上<br>“resolutions”: {<br>  “uglify-es”: “&gt;=3.3.4”<br>}</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">    </span><br><span class="line">    参考：https://github.com/facebook/react-native/issues/17348</span><br><span class="line"></span><br><span class="line">4. 不打开debug一切正常，当打开debug时报错：` window.deltaUrlToBlobUrl is not a function `。</span><br><span class="line"></span><br><span class="line">    ![error.png](https://upload-images.jianshu.io/upload_images/3453108-ed976ab7e78b9bc4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)</span><br><span class="line">    </span><br><span class="line">    解决方案：localhost 改成 ip 地址。</span><br><span class="line">    </span><br><span class="line">    参考：https://stackoverflow.com/questions/49365217/react-native-debug-js-remotely-error-window-deltaurltobloburl-is-not-a-function</span><br><span class="line"></span><br><span class="line">5. react-native-swiper，scrollBy用法。</span><br><span class="line"></span><br><span class="line">   ![image.png](https://upload-images.jianshu.io/upload_images/3453108-723338ec09f20cf1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)</span><br><span class="line"></span><br><span class="line">6. react-native-swiper，轮播数据用map循环动态渲染，onIndexChanged 只执行一次：</span><br><span class="line"></span><br><span class="line">    拒绝此类方案：拆东墙补西墙 https://www.jianshu.com/p/a46a57484946 ！</span><br><span class="line">    </span><br><span class="line">    解决方案：对list数组进行判断。(注：加下面四句代码就行了)</span><br></pre></td></tr></table></figure>
-<p>render() {<br>  if (HomeStore.list.length &gt; 0) {     // ++++++++ 对list数组进行判断</p>
-<pre><code>return (
-    &lt;View style={styles.content}&gt;
-
-        &lt;Swiper style={styles.swiper} showsButtons={false}
-            ref={swiper =&gt; { HomeStore.swiperDom = swiper }}
-            loadMinimal={true}
-            index={HomeStore.currentIndex}
-            loop={false} showsPagination={false}
-            automaticallyAdjustContentInsets={true}
-            removeClippedSubviews={true}
-            bounces={true}
-            onIndexChanged={this.onIndexChanged} &gt;
-
-            {
-                HomeStore.list.map((item, i) =&gt; {
-                    return (
-                        &lt;Info item={item} key={i} index={i} list={HomeStore.list} /&gt;
-                    )
-
-                })
-            }
-
-        &lt;/Swiper&gt;
-
-    &lt;/View&gt;
-
-);
-</code></pre><p>  } else {   // ++++++++ 对list数组进行判断</p>
-<pre><code>return &lt;View&gt;&lt;/View&gt;;   // ++++++++ 对list数组进行判断
-</code></pre><p>  }   // ++++++++ 对list数组进行判断<br>}<br><code>`</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 因为之前装的版本是：&quot;@types/react-native&quot;: &quot;0.57.63&quot;</span><br><span class="line">export function create&lt;T extends NamedStyles&lt;T&gt; | NamedStyles&lt;any&gt;&gt;(styles: T): T;</span><br><span class="line"></span><br><span class="line">// 然后版本更新到：&quot;@types/react-native&quot;: &quot;^0.60.0&quot;</span><br><span class="line">export function create&lt;T extends NamedStyles&lt;T&gt; | NamedStyles&lt;any&gt;&gt;(styles: T | NamedStyles&lt;T&gt;): T;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
+</li>
+<li><p>报错：<code>Unhandled JS Exception: TypeError: undefined is not an object (evaluating &#39;this._subscribableSubscriptions.forEach&#39;)</code></p>
+<p> 解决方案：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// package.json文件里加上</span><br><span class="line">&quot;resolutions&quot;: &#123;</span><br><span class="line">    &quot;uglify-es&quot;: &quot;&gt;=3.3.4&quot;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<pre><code>参考：https://github.com/facebook/react-native/issues/17348
+</code></pre><ol start="4">
+<li><p>不打开debug一切正常，当打开debug时报错：<code>window.deltaUrlToBlobUrl is not a function</code>。</p>
+<p> <img src="https://upload-images.jianshu.io/upload_images/3453108-ed976ab7e78b9bc4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="error.png"></p>
+<p> 解决方案：localhost 改成 ip 地址。</p>
+<p> 参考：<a href="https://stackoverflow.com/questions/49365217/react-native-debug-js-remotely-error-window-deltaurltobloburl-is-not-a-function" target="_blank" rel="noopener">https://stackoverflow.com/questions/49365217/react-native-debug-js-remotely-error-window-deltaurltobloburl-is-not-a-function</a></p>
+</li>
+<li><p>react-native-swiper，scrollBy用法。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3453108-723338ec09f20cf1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+</li>
+<li><p>react-native-swiper，轮播数据用map循环动态渲染，onIndexChanged 只执行一次：</p>
+<p> 拒绝此类方案：拆东墙补西墙 <a href="https://www.jianshu.com/p/a46a57484946" target="_blank" rel="noopener">https://www.jianshu.com/p/a46a57484946</a> ！</p>
+<p> 解决方案：对list数组进行判断。(注：加下面四句代码就行了)</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">render() &#123;</span><br><span class="line">    if (HomeStore.list.length &gt; 0) &#123;     // ++++++++ 对list数组进行判断</span><br><span class="line">        return (</span><br><span class="line">            &lt;View style=&#123;styles.content&#125;&gt;</span><br><span class="line"></span><br><span class="line">                &lt;Swiper style=&#123;styles.swiper&#125; showsButtons=&#123;false&#125;</span><br><span class="line">                    ref=&#123;swiper =&gt; &#123; HomeStore.swiperDom = swiper &#125;&#125;</span><br><span class="line">                    loadMinimal=&#123;true&#125;</span><br><span class="line">                    index=&#123;HomeStore.currentIndex&#125;</span><br><span class="line">                    loop=&#123;false&#125; showsPagination=&#123;false&#125;</span><br><span class="line">                    automaticallyAdjustContentInsets=&#123;true&#125;</span><br><span class="line">                    removeClippedSubviews=&#123;true&#125;</span><br><span class="line">                    bounces=&#123;true&#125;</span><br><span class="line">                    onIndexChanged=&#123;this.onIndexChanged&#125; &gt;</span><br><span class="line"></span><br><span class="line">                    &#123;</span><br><span class="line">                        HomeStore.list.map((item, i) =&gt; &#123;</span><br><span class="line">                            return (</span><br><span class="line">                                &lt;Info item=&#123;item&#125; key=&#123;i&#125; index=&#123;i&#125; list=&#123;HomeStore.list&#125; /&gt;</span><br><span class="line">                            )</span><br><span class="line"></span><br><span class="line">                        &#125;)</span><br><span class="line">                    &#125;</span><br><span class="line"></span><br><span class="line">                &lt;/Swiper&gt;</span><br><span class="line"></span><br><span class="line">            &lt;/View&gt;</span><br><span class="line"></span><br><span class="line">        );</span><br><span class="line">    &#125; else &#123;   // ++++++++ 对list数组进行判断</span><br><span class="line">        return &lt;View&gt;&lt;/View&gt;;   // ++++++++ 对list数组进行判断</span><br><span class="line">    &#125;   // ++++++++ 对list数组进行判断</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>报错：<code>request:fail url not in domain list</code>。在获取地址时，用的腾讯api解析的经纬度，测试时没问题，上线了就报这个错了。</p>
 <p> 解决方案：微信公众平台，在“设置” -&gt; “开发设置”中设置request合法域名，添加<a href="https://apis.map.qq.com。（本来以为他们是一家，不用加，结果还是要加。）" target="_blank" rel="noopener">https://apis.map.qq.com。（本来以为他们是一家，不用加，结果还是要加。）</a></p>
@@ -658,10 +645,9 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
-            </div>
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/07/07/react-native/">
+                <a href="/2019/07/07/react-native.1/">
                     <div class="card-image">
                         
                         
@@ -674,9 +660,9 @@
                     <div class="summary">记录开始
 公司要做一个APP产品，自己会些皮毛，所以在开发的过程中还是遇到了比较多的问题（比如，一开始就安装不上啊，各种报红啊，怎么排查问题啊，轮播插件不响应啊，typescript不怎么会写啊…等等等）。顺便把mbox和typescrip</div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-07
-                            </span>
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-07
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -689,7 +675,6 @@
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
@@ -858,7 +843,7 @@
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">822</span>
+                <span class="white-color">1.4k</span>
             
 
             
