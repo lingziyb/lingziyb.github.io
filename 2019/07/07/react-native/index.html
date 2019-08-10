@@ -4,7 +4,7 @@
 
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="react-native, lingzi">
+    <meta name="keywords" content="react-native遇坑的陈列, lingzi">
     <meta name="description" content="记录开始
 公司要做一个APP产品，自己会些皮毛，所以在开发的过程中还是遇到了比较多的问题（比如，一开始就安装不上啊，各种报红啊，怎么排查问题啊，轮播插件不响应啊，typescript不怎么会写啊…等等等）。顺便把mbox和typescrip">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,7 +14,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>react-native | lingzi</title>
+    <title>react-native遇坑的陈列 | lingzi</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -254,13 +254,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        react-native
+                        react-native遇坑的陈列
                     </div>
                 </div>
             </div>
@@ -371,8 +371,16 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/app-react-native-react-mbox-typescript/" target="_blank">
-                                <span class="chip bg-color">app,react-native,react,mbox,typescript</span>
+                            <a href="/tags/app/" target="_blank">
+                                <span class="chip bg-color">app</span>
+                            </a>
+                        
+                            <a href="/tags/react-native/" target="_blank">
+                                <span class="chip bg-color">react-native</span>
+                            </a>
+                        
+                            <a href="/tags/typescript/" target="_blank">
+                                <span class="chip bg-color">typescript</span>
                             </a>
                         
                     </div>
@@ -402,7 +410,7 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        756
+                        749
                     </div>
                     
 
@@ -438,49 +446,46 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 源码</span><br><span class="line">export function create&lt;T extends NamedStyles&lt;T&gt; | NamedStyles&lt;any&gt;&gt;(styles: T): T;    </span><br><span class="line">// 改进后的：</span><br><span class="line">export function create&lt;T extends NamedStyles&lt;T&gt;&gt;(styles: NamedStyles&lt;T&gt;): &#123; [P in keyof T]: RegisteredStyle&lt;T[P]&gt; &#125;;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>解决方案二，版本更新，最新版已修复此问题。（一开始我不知道已有版本不是最新版…）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">    // 因为之前装的版本是：&quot;@types/react-native&quot;: &quot;0.57.63&quot;</span><br><span class="line">    export function create&lt;T extends NamedStyles&lt;T&gt; | NamedStyles&lt;any&gt;&gt;(styles: T): T;</span><br><span class="line"></span><br><span class="line">    // 然后版本更新到：&quot;@types/react-native&quot;: &quot;^0.60.0&quot;</span><br><span class="line">    export function create&lt;T extends NamedStyles&lt;T&gt; | NamedStyles&lt;any&gt;&gt;(styles: T | NamedStyles&lt;T&gt;): T;</span><br><span class="line">    ``` </span><br><span class="line"></span><br><span class="line">3. 报错：``` Unhandled JS Exception: TypeError: undefined is not an object (evaluating &apos;this._subscribableSubscriptions.forEach&apos;)</span><br></pre></td></tr></table></figure>
-<p>解决方案：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// package.json文件里加上</span><br><span class="line">&quot;resolutions&quot;: &#123;</span><br><span class="line">    &quot;uglify-es&quot;: &quot;&gt;=3.3.4&quot;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-<p>参考：<a href="https://github.com/facebook/react-native/issues/17348" target="_blank" rel="noopener">https://github.com/facebook/react-native/issues/17348</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">    // 因为之前装的版本是：&quot;@types/react-native&quot;: &quot;0.57.63&quot;</span><br><span class="line">    export function create&lt;T extends NamedStyles&lt;T&gt; | NamedStyles&lt;any&gt;&gt;(styles: T): T;</span><br><span class="line"></span><br><span class="line">    // 然后版本更新到：&quot;@types/react-native&quot;: &quot;^0.60.0&quot;</span><br><span class="line">    export function create&lt;T extends NamedStyles&lt;T&gt; | NamedStyles&lt;any&gt;&gt;(styles: T | NamedStyles&lt;T&gt;): T;</span><br><span class="line">    ``` </span><br><span class="line"></span><br><span class="line">3. 报错：` Unhandled JS Exception: TypeError: undefined is not an object (evaluating &apos;this._subscribableSubscriptions.forEach&apos;) `</span><br><span class="line"></span><br><span class="line">    解决方案：</span><br></pre></td></tr></table></figure>
+<p>// package.json文件里加上<br>“resolutions”: {<br>  “uglify-es”: “&gt;=3.3.4”<br>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">    </span><br><span class="line">    参考：https://github.com/facebook/react-native/issues/17348</span><br><span class="line"></span><br><span class="line">4. 不打开debug一切正常，当打开debug时报错：` window.deltaUrlToBlobUrl is not a function `。</span><br><span class="line"></span><br><span class="line">    ![error.png](https://upload-images.jianshu.io/upload_images/3453108-ed976ab7e78b9bc4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)</span><br><span class="line">    </span><br><span class="line">    解决方案：localhost 改成 ip 地址。</span><br><span class="line">    </span><br><span class="line">    参考：https://stackoverflow.com/questions/49365217/react-native-debug-js-remotely-error-window-deltaurltobloburl-is-not-a-function</span><br><span class="line"></span><br><span class="line">5. react-native-swiper，scrollBy用法。</span><br><span class="line"></span><br><span class="line">   ![image.png](https://upload-images.jianshu.io/upload_images/3453108-723338ec09f20cf1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)</span><br><span class="line"></span><br><span class="line">6. react-native-swiper，轮播数据用map循环动态渲染，onIndexChanged 只执行一次：</span><br><span class="line"></span><br><span class="line">    拒绝此类方案：拆东墙补西墙 https://www.jianshu.com/p/a46a57484946 ！</span><br><span class="line">    </span><br><span class="line">    解决方案：对list数组进行判断。(注：加下面四句代码就行了)</span><br></pre></td></tr></table></figure>
+<p>render() {<br>  if (HomeStore.list.length &gt; 0) {     // ++++++++ 对list数组进行判断</p>
+<pre><code>return (
+    &lt;View style={styles.content}&gt;
+
+        &lt;Swiper style={styles.swiper} showsButtons={false}
+            ref={swiper =&gt; { HomeStore.swiperDom = swiper }}
+            loadMinimal={true}
+            index={HomeStore.currentIndex}
+            loop={false} showsPagination={false}
+            automaticallyAdjustContentInsets={true}
+            removeClippedSubviews={true}
+            bounces={true}
+            onIndexChanged={this.onIndexChanged} &gt;
+
+            {
+                HomeStore.list.map((item, i) =&gt; {
+                    return (
+                        &lt;Info item={item} key={i} index={i} list={HomeStore.list} /&gt;
+                    )
+
+                })
+            }
+
+        &lt;/Swiper&gt;
+
+    &lt;/View&gt;
+
+);
+</code></pre><p>  } else {   // ++++++++ 对list数组进行判断</p>
+<pre><code>return &lt;View&gt;&lt;/View&gt;;   // ++++++++ 对list数组进行判断
+</code></pre><p>  }   // ++++++++ 对list数组进行判断<br>}<br><code>`</code></p>
 </li>
 </ul>
 </li>
-<li><p>不打开debug一切正常，当打开debug时报错：<figure class="highlight plain"><figcaption><span>is not a function ```。</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    ![error.png](https://upload-images.jianshu.io/upload_images/3453108-ed976ab7e78b9bc4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)</span><br><span class="line">    解决方案：localhost 改成 ip 地址</span><br><span class="line">   参考：https://stackoverflow.com/questions/49365217/react-native-debug-js-remotely-error-window-deltaurltobloburl-is-not-a-function</span><br><span class="line"></span><br><span class="line">5. react-native-swiper，scrollBy用法。</span><br><span class="line">   ![image.png](https://upload-images.jianshu.io/upload_images/3453108-723338ec09f20cf1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)</span><br><span class="line"></span><br><span class="line">6. react-native-swiper，轮播数据用map循环动态渲染，onIndexChanged 只执行一次：</span><br><span class="line">    拒绝此类方案：拆东墙补西墙 https://www.jianshu.com/p/a46a57484946 ！</span><br><span class="line">    解决方案：对list数组进行判断。(注：加下面四句代码就行了)</span><br></pre></td></tr></table></figure></p>
-<p> render() {</p>
-<pre><code>if (HomeStore.list.length &gt; 0) {     // ++++++++ 对list数组进行判断
-    return (
-        &lt;View style={styles.content}&gt;
-
-            &lt;Swiper style={styles.swiper} showsButtons={false}
-                ref={swiper =&gt; { HomeStore.swiperDom = swiper }}
-                loadMinimal={true}
-                index={HomeStore.currentIndex}
-                loop={false} showsPagination={false}
-                automaticallyAdjustContentInsets={true}
-                removeClippedSubviews={true}
-                bounces={true}
-                onIndexChanged={this.onIndexChanged} &gt;
-
-                {
-                    HomeStore.list.map((item, i) =&gt; {
-                        return (
-                            &lt;Info item={item} key={i} index={i} list={HomeStore.list} /&gt;
-                        )
-
-                    })
-                }
-
-            &lt;/Swiper&gt;
-
-        &lt;/View&gt;
-
-    );
-} else {   // ++++++++ 对list数组进行判断
-    return &lt;View&gt;&lt;/View&gt;;   // ++++++++ 对list数组进行判断
-}   // ++++++++ 对list数组进行判断
-</code></pre><p> }<br> <code>`</code></p>
-</li>
-<li><p>报错：<code>request:fail url not in domain list</code>。在获取地址时，用的腾讯api解析的经纬度，测试时没问题，上线了就报这个错了。<br> 解决方案：微信公众平台，在“设置” -&gt; “开发设置”中设置request合法域名，添加<a href="https://apis.map.qq.com。（本来以为他们是一家，不用加，结果还是要加。）" target="_blank" rel="noopener">https://apis.map.qq.com。（本来以为他们是一家，不用加，结果还是要加。）</a><br> 参考：<a href="https://blog.csdn.net/weixin_43047977/article/details/84836501" target="_blank" rel="noopener">https://blog.csdn.net/weixin_43047977/article/details/84836501</a></p>
+<li><p>报错：<code>request:fail url not in domain list</code>。在获取地址时，用的腾讯api解析的经纬度，测试时没问题，上线了就报这个错了。</p>
+<p> 解决方案：微信公众平台，在“设置” -&gt; “开发设置”中设置request合法域名，添加<a href="https://apis.map.qq.com。（本来以为他们是一家，不用加，结果还是要加。）" target="_blank" rel="noopener">https://apis.map.qq.com。（本来以为他们是一家，不用加，结果还是要加。）</a></p>
+<p> 参考：<a href="https://blog.csdn.net/weixin_43047977/article/details/84836501" target="_blank" rel="noopener">https://blog.csdn.net/weixin_43047977/article/details/84836501</a> 。</p>
 </li>
 </ol>
 
@@ -630,7 +635,7 @@
                     </span>
                     <a href="http://yoursite.com" class="b-link-green">lingzi</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2019/07/07/react-native/" class="b-link-green">react-native</a>
+                    <a href="/2019/07/07/react-native/" class="b-link-green">react-native遇坑的陈列</a>
                 </p>
             </div>
         </div>
@@ -660,9 +665,9 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="react-native">
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="react-native遇坑的陈列">
                         
-                        <span class="card-title">react-native</span>
+                        <span class="card-title">react-native遇坑的陈列</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -688,8 +693,16 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/app-react-native-react-mbox-typescript/" target="_blank">
-                        <span class="chip bg-color">app,react-native,react,mbox,typescript</span>
+                    <a href="/tags/app/" target="_blank">
+                        <span class="chip bg-color">app</span>
+                    </a>
+                    
+                    <a href="/tags/react-native/" target="_blank">
+                        <span class="chip bg-color">react-native</span>
+                    </a>
+                    
+                    <a href="/tags/typescript/" target="_blank">
+                        <span class="chip bg-color">typescript</span>
                     </a>
                     
                 </div>
@@ -845,7 +858,7 @@
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">829</span>
+                <span class="white-color">822</span>
             
 
             
