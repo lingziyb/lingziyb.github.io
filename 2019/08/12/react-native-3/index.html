@@ -4,9 +4,11 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="react-native遇坑的陈列, lingzi">
+    <meta name="keywords" content="react-native, lingzi">
     <meta name="description" content="记录开始
-公司要做一个APP产品，自己会些皮毛，所以在开发的过程中还是遇到了比较多的问题（比如，一开始就安装不上啊，各种报红啊，怎么排查问题啊，轮播插件不响应啊，typescript不怎么会写啊…等等等）。顺便把mbox和typescrip">
+之前都是在windows上开发，公司配的mac终于到了，现在开始用上mac。然而对于一个从未使用过mac的人来说，啊…亚历山大。
+
+环境说明react：16.8.3react-native：0.59.9react-navigati">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -14,7 +16,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>react-native遇坑的陈列 | lingzi</title>
+    <title>react-native | lingzi</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -257,13 +259,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        react-native遇坑的陈列
+                        react-native
                     </div>
                 </div>
             </div>
@@ -406,21 +408,21 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-07-07
+                    2019-08-12
                 </div>
 
                 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        671
+                        422
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        3 分
+                        1 分
                     </div>
                     
                 
@@ -437,89 +439,51 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h3 id="记录开始"><a href="#记录开始" class="headerlink" title="记录开始"></a>记录开始</h3><blockquote>
-<p>公司要做一个APP产品，自己会些皮毛，所以在开发的过程中还是遇到了比较多的问题（比如，一开始就安装不上啊，各种报红啊，怎么排查问题啊，轮播插件不响应啊，typescript不怎么会写啊…等等等）。顺便把mbox和typescript给融合进去了。</p>
+<p>之前都是在windows上开发，公司配的mac终于到了，现在开始用上mac。然而对于一个从未使用过mac的人来说，啊…亚历山大。</p>
 </blockquote>
-<h3 id="环境说明"><a href="#环境说明" class="headerlink" title="环境说明"></a>环境说明</h3><p>windows系统<br>android studio安卓模拟器 / 安卓手机</p>
+<h3 id="环境说明"><a href="#环境说明" class="headerlink" title="环境说明"></a>环境说明</h3><p>react：16.8.3<br>react-native：0.59.9<br>react-navigation：3.11.0</p>
+<p>windows / mac<br>android studio安卓模拟器 / 安卓手机<br>xcode iphone模拟器 / iphone</p>
 <h3 id="记录罗列"><a href="#记录罗列" class="headerlink" title="记录罗列"></a>记录罗列</h3><ol>
-<li><p>vscode 运行 react-native run android 报错，然后用android-studio运行就好了。</p>
+<li><p>mac 安装 jdk1.8：</p>
+<pre class=" language-javascript"><code class="language-javascript">brew cask install adoptopenjdk<span class="token operator">/</span>openjdk<span class="token operator">/</span>adoptopenjdk8
+</code></pre>
 </li>
-<li><p>vscode里开发，代码 stylesheet里样式无提示。两个解决方案：</p>
+<li><p>第三方分享和登录，用的友盟。</p>
+</li>
+</ol>
 <ul>
-<li><p>解决方案一，改源码。<br>参考：<a href="https://github.com/microsoft/vscode-react-native/issues/379" target="_blank" rel="noopener">https://github.com/microsoft/vscode-react-native/issues/379</a></p>
-<pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// 源码</span>
-<span class="token keyword">export</span> <span class="token keyword">function</span> create<span class="token operator">&lt;</span>T <span class="token keyword">extends</span> <span class="token class-name">NamedStyles</span><span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token operator">|</span> NamedStyles<span class="token operator">&lt;</span>any<span class="token operator">></span><span class="token operator">></span><span class="token punctuation">(</span>styles<span class="token punctuation">:</span> T<span class="token punctuation">)</span><span class="token punctuation">:</span> T<span class="token punctuation">;</span>    
-<span class="token comment" spellcheck="true">// 改进后的：</span>
-<span class="token keyword">export</span> <span class="token keyword">function</span> create<span class="token operator">&lt;</span>T <span class="token keyword">extends</span> <span class="token class-name">NamedStyles</span><span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token operator">></span><span class="token punctuation">(</span>styles<span class="token punctuation">:</span> NamedStyles<span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token punctuation">{</span> <span class="token punctuation">[</span>P <span class="token keyword">in</span> keyof T<span class="token punctuation">]</span><span class="token punctuation">:</span> RegisteredStyle<span class="token operator">&lt;</span>T<span class="token punctuation">[</span>P<span class="token punctuation">]</span><span class="token operator">></span> <span class="token punctuation">}</span><span class="token punctuation">;</span> 
-</code></pre>
-</li>
-<li><p>解决方案二，版本更新，最新版已修复此问题。（一开始我不知道已有版本不是最新版…）</p>
-<pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// 因为之前装的版本是："@types/react-native": "0.57.63"</span>
-<span class="token keyword">export</span> <span class="token keyword">function</span> create<span class="token operator">&lt;</span>T <span class="token keyword">extends</span> <span class="token class-name">NamedStyles</span><span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token operator">|</span> NamedStyles<span class="token operator">&lt;</span>any<span class="token operator">></span><span class="token operator">></span><span class="token punctuation">(</span>styles<span class="token punctuation">:</span> T<span class="token punctuation">)</span><span class="token punctuation">:</span> T<span class="token punctuation">;</span>
-
-<span class="token comment" spellcheck="true">// 然后版本更新到："@types/react-native": "^0.60.0"</span>
-<span class="token keyword">export</span> <span class="token keyword">function</span> create<span class="token operator">&lt;</span>T <span class="token keyword">extends</span> <span class="token class-name">NamedStyles</span><span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token operator">|</span> NamedStyles<span class="token operator">&lt;</span>any<span class="token operator">></span><span class="token operator">></span><span class="token punctuation">(</span>styles<span class="token punctuation">:</span> T <span class="token operator">|</span> NamedStyles<span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token punctuation">)</span><span class="token punctuation">:</span> T<span class="token punctuation">;</span>
-</code></pre>
-</li>
+<li>友盟react-native分享文档：<a href="https://developer.umeng.com/docs/66632/detail/67587#h3-u5206u4EAB" target="_blank" rel="noopener">https://developer.umeng.com/docs/66632/detail/67587#h3-u5206u4EAB</a></li>
+<li>React Native 结合友盟实现分享：<a href="https://juejin.im/post/5c17ba876fb9a049b07d440f#heading-16" target="_blank" rel="noopener">https://juejin.im/post/5c17ba876fb9a049b07d440f#heading-16</a></li>
+<li><a href="https://www.jianshu.com/p/d54b259f7cb0" target="_blank" rel="noopener">https://www.jianshu.com/p/d54b259f7cb0</a></li>
+<li><a href="https://github.com/songxiaoliang/react-native-share" target="_blank" rel="noopener">https://github.com/songxiaoliang/react-native-share</a></li>
 </ul>
-</li>
-<li><p>报错：<code>Unhandled JS Exception: TypeError: undefined is not an object (evaluating &#39;this._subscribableSubscriptions.forEach&#39;)</code></p>
-<p> 解决方案：</p>
-<pre class=" language-javascript"><code class="language-javascript"> <span class="token comment" spellcheck="true">// package.json文件里加上</span>
- <span class="token string">"resolutions"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
-     <span class="token string">"uglify-es"</span><span class="token punctuation">:</span> <span class="token string">">=3.3.4"</span>
-   <span class="token punctuation">}</span>
+<ol start="3">
+<li><p>mac  终端翻墙</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">export</span> http_proxy<span class="token operator">=</span>http<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span><span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token punctuation">:</span><span class="token number">1087</span>
+<span class="token keyword">export</span> https_proxy<span class="token operator">=</span>http<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span><span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token punctuation">:</span><span class="token number">1087</span>
 </code></pre>
-<p> 参考：<a href="https://github.com/facebook/react-native/issues/17348" target="_blank" rel="noopener">https://github.com/facebook/react-native/issues/17348</a></p>
+<p>参考链接：<a href="http://kerminate.me/2018/10/22/mac-%E7%BB%88%E7%AB%AF%E5%AE%9E%E7%8E%B0%E7%BF%BB%E5%A2%99/" target="_blank" rel="noopener">http://kerminate.me/2018/10/22/mac-%E7%BB%88%E7%AB%AF%E5%AE%9E%E7%8E%B0%E7%BF%BB%E5%A2%99/</a></p>
 </li>
-<li><p>不打开debug一切正常，当打开debug时报错：<code>window.deltaUrlToBlobUrl is not a function</code>。</p>
-<p> <img src="https://upload-images.jianshu.io/upload_images/3453108-ed976ab7e78b9bc4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="error.png"></p>
-<p> 解决方案：localhost 改成 ip 地址。</p>
-<p> 参考：<a href="https://stackoverflow.com/questions/49365217/react-native-debug-js-remotely-error-window-deltaurltobloburl-is-not-a-function" target="_blank" rel="noopener">https://stackoverflow.com/questions/49365217/react-native-debug-js-remotely-error-window-deltaurltobloburl-is-not-a-function</a></p>
+<li><p>误删远程dev分支</p>
 </li>
-<li><p>react-native-swiper，scrollBy用法。</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/3453108-723338ec09f20cf1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+</ol>
+<ul>
+<li>使用git log -g 找回之前提交的commit</li>
+<li>使用git branch dev commit_id命令用这个commit创建一个分支</li>
+<li>切换到dev分支</li>
+</ul>
+<p>参考文章：<br>git 误删分支恢复方法：<a href="https://blog.csdn.net/new03/article/details/84920771" target="_blank" rel="noopener">https://blog.csdn.net/new03/article/details/84920771</a></p>
+<ol start="5">
+<li><p>友盟第三方微信分享，唤起微信授权后不走回调。<br>问题解决：回调包wxapi这个文件夹要放在项目包酱人里面（之前是跟jiangren平级的）。<br><img src="https://upload-images.jianshu.io/upload_images/3453108-a7901361fd38e8fc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
 </li>
-<li><p>react-native-swiper，轮播数据用map循环动态渲染，onIndexChanged 只执行一次：</p>
-<p> 拒绝此类方案：拆东墙补西墙 <a href="https://www.jianshu.com/p/a46a57484946" target="_blank" rel="noopener">https://www.jianshu.com/p/a46a57484946</a> ！</p>
-<p> 解决方案：对list数组进行判断。(注：加下面四句代码就行了)</p>
-<pre class=" language-javascript"><code class="language-javascript"> <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-     <span class="token keyword">if</span> <span class="token punctuation">(</span>HomeStore<span class="token punctuation">.</span>list<span class="token punctuation">.</span>length <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>     <span class="token comment" spellcheck="true">// ++++++++ 对list数组进行判断</span>
-         <span class="token keyword">return</span> <span class="token punctuation">(</span>
-             <span class="token operator">&lt;</span>View style<span class="token operator">=</span><span class="token punctuation">{</span>styles<span class="token punctuation">.</span>content<span class="token punctuation">}</span><span class="token operator">></span>
-
-                 <span class="token operator">&lt;</span>Swiper style<span class="token operator">=</span><span class="token punctuation">{</span>styles<span class="token punctuation">.</span>swiper<span class="token punctuation">}</span> showsButtons<span class="token operator">=</span><span class="token punctuation">{</span><span class="token boolean">false</span><span class="token punctuation">}</span>
-                     ref<span class="token operator">=</span><span class="token punctuation">{</span>swiper <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span> HomeStore<span class="token punctuation">.</span>swiperDom <span class="token operator">=</span> swiper <span class="token punctuation">}</span><span class="token punctuation">}</span>
-                     loadMinimal<span class="token operator">=</span><span class="token punctuation">{</span><span class="token boolean">true</span><span class="token punctuation">}</span>
-                     index<span class="token operator">=</span><span class="token punctuation">{</span>HomeStore<span class="token punctuation">.</span>currentIndex<span class="token punctuation">}</span>
-                     loop<span class="token operator">=</span><span class="token punctuation">{</span><span class="token boolean">false</span><span class="token punctuation">}</span> showsPagination<span class="token operator">=</span><span class="token punctuation">{</span><span class="token boolean">false</span><span class="token punctuation">}</span>
-                     automaticallyAdjustContentInsets<span class="token operator">=</span><span class="token punctuation">{</span><span class="token boolean">true</span><span class="token punctuation">}</span>
-                     removeClippedSubviews<span class="token operator">=</span><span class="token punctuation">{</span><span class="token boolean">true</span><span class="token punctuation">}</span>
-                     bounces<span class="token operator">=</span><span class="token punctuation">{</span><span class="token boolean">true</span><span class="token punctuation">}</span>
-                     onIndexChanged<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>onIndexChanged<span class="token punctuation">}</span> <span class="token operator">></span>
-
-                     <span class="token punctuation">{</span>
-                         HomeStore<span class="token punctuation">.</span>list<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span>item<span class="token punctuation">,</span> i<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
-                             <span class="token keyword">return</span> <span class="token punctuation">(</span>
-                                 <span class="token operator">&lt;</span>Info item<span class="token operator">=</span><span class="token punctuation">{</span>item<span class="token punctuation">}</span> key<span class="token operator">=</span><span class="token punctuation">{</span>i<span class="token punctuation">}</span> index<span class="token operator">=</span><span class="token punctuation">{</span>i<span class="token punctuation">}</span> list<span class="token operator">=</span><span class="token punctuation">{</span>HomeStore<span class="token punctuation">.</span>list<span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">></span>
-                             <span class="token punctuation">)</span>
-
-                         <span class="token punctuation">}</span><span class="token punctuation">)</span>
-                     <span class="token punctuation">}</span>
-
-                 <span class="token operator">&lt;</span><span class="token operator">/</span>Swiper<span class="token operator">></span>
-
-             <span class="token operator">&lt;</span><span class="token operator">/</span>View<span class="token operator">></span>
-
-         <span class="token punctuation">)</span><span class="token punctuation">;</span>
-     <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>   <span class="token comment" spellcheck="true">// ++++++++ 对list数组进行判断</span>
-         <span class="token keyword">return</span> <span class="token operator">&lt;</span>View<span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>View<span class="token operator">></span><span class="token punctuation">;</span>   <span class="token comment" spellcheck="true">// ++++++++ 对list数组进行判断</span>
-     <span class="token punctuation">}</span>   <span class="token comment" spellcheck="true">// ++++++++ 对list数组进行判断</span>
- <span class="token punctuation">}</span>
-</code></pre>
+<li><p>git提交了过大的文件  导致push报错<br><img src="https://upload-images.jianshu.io/upload_images/3453108-eab486789cc4462d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
 </li>
-<li><p>报错：<code>request:fail url not in domain list</code>。在获取地址时，用的腾讯api解析的经纬度，测试时没问题，上线了就报这个错了。</p>
-<p> 解决方案：微信公众平台，在“设置” -&gt; “开发设置”中设置request合法域名，添加<a href="https://apis.map.qq.com。（本来以为他们是一家，不用加，结果还是要加。）" target="_blank" rel="noopener">https://apis.map.qq.com。（本来以为他们是一家，不用加，结果还是要加。）</a></p>
-<p> 参考：<a href="https://blog.csdn.net/weixin_43047977/article/details/84836501" target="_blank" rel="noopener">https://blog.csdn.net/weixin_43047977/article/details/84836501</a> 。</p>
+</ol>
+<p>解决：<br><img src="https://upload-images.jianshu.io/upload_images/3453108-5051a5e70bf7437e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br>参考链接：<a href="https://blog.csdn.net/yimingsilence/article/details/81460278" target="_blank" rel="noopener">https://blog.csdn.net/yimingsilence/article/details/81460278</a></p>
+<ol start="7">
+<li><p>友盟第三方分享登录：<br>IMEI授权，友盟官网没有说清楚这段代码是加在哪个文件：<br><img src="https://upload-images.jianshu.io/upload_images/3453108-a8ef6735811bbfa1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br>问了rn群里的小伙伴才知是加在 MainActivity.java 里！<br><img src="https://upload-images.jianshu.io/upload_images/3453108-7a305492404585d4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+</li>
+<li><p>非 组件页面  用路由的问题。<br>解决方案：暴露navigation在全局。<br><img src="https://upload-images.jianshu.io/upload_images/3453108-456606797df00cac.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
 </li>
 </ol>
 
@@ -669,7 +633,7 @@
                     </span>
                     <a href="http://yoursite.com" class="b-link-green">lingzi</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2019/07/07/react-native/" class="b-link-green">react-native遇坑的陈列</a>
+                    <a href="/2019/08/12/react-native-3/" class="b-link-green">react-native</a>
                 </p>
             </div>
         </div>
@@ -694,7 +658,7 @@
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/08/12/react-native-3/">
+                <a href="/2019/08/12/react-native-2/">
                     <div class="card-image">
                         
                         
@@ -705,9 +669,12 @@
                 </a>
                 <div class="card-content article-content">
                     <div class="summary">记录开始
-之前都是在windows上开发，公司配的mac终于到了，现在开始用上mac。然而对于一个从未使用过mac的人来说，啊…亚历山大。
+继上一篇继续
 
-环境说明react：16.8.3react-native：0.59.9react-navigati</div>
+环境说明react：16.8.3react-native：0.59.9react-navigation：3.11.0
+windowsandroid studio安卓模拟器 / 安卓手机    
+记录罗列
+显示富文本</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-12
@@ -750,19 +717,21 @@
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/03/14/hello-world/">
+                <a href="/2019/07/07/react-native/">
                     <div class="card-image">
                         
-                        <img src="https://annie-header-bg-1253939655.cos.ap-beijing.myqcloud.com/69.jpg" class="responsive-img" alt="Hello World">
                         
-                        <span class="card-title">Hello World</span>
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="react-native遇坑的陈列">
+                        
+                        <span class="card-title">react-native遇坑的陈列</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hex</div>
+                    <div class="summary">记录开始
+公司要做一个APP产品，自己会些皮毛，所以在开发的过程中还是遇到了比较多的问题（比如，一开始就安装不上啊，各种报红啊，怎么排查问题啊，轮播插件不响应啊，typescript不怎么会写啊…等等等）。顺便把mbox和typescrip</div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-03-14
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-07
                             </span>
                         <span class="publish-author">
                             
@@ -775,6 +744,22 @@
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/app/" target="_blank">
+                        <span class="chip bg-color">app</span>
+                    </a>
+                    
+                    <a href="/tags/react-native/" target="_blank">
+                        <span class="chip bg-color">react-native</span>
+                    </a>
+                    
+                    <a href="/tags/typescript/" target="_blank">
+                        <span class="chip bg-color">typescript</span>
+                    </a>
+                    
                 </div>
                 
             </div>
