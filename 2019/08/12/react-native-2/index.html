@@ -4,7 +4,7 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="react-native, lingzi">
+    <meta name="keywords" content="react-native遇坑的陈列-2, lingzi">
     <meta name="description" content="记录开始
 继上一篇继续
 
@@ -19,7 +19,7 @@ windowsandroid studio安卓模拟器 / 安卓手机
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>react-native | lingzi</title>
+    <title>react-native遇坑的陈列-2 | lingzi</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -262,13 +262,13 @@ windowsandroid studio安卓模拟器 / 安卓手机
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        react-native
+                        react-native遇坑的陈列-2
                     </div>
                 </div>
             </div>
@@ -418,7 +418,7 @@ windowsandroid studio安卓模拟器 / 安卓手机
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        251
+                        291
                     </div>
                     
 
@@ -448,22 +448,24 @@ windowsandroid studio安卓模拟器 / 安卓手机
 <p>windows<br>android studio安卓模拟器 / 安卓手机    </p>
 <h3 id="记录罗列"><a href="#记录罗列" class="headerlink" title="记录罗列"></a>记录罗列</h3><ol>
 <li><p>显示富文本：react-native-webview。但是字体显示不正常，要在接口返回的html里加上viewport 适配：</p>
-<pre><code>&lt;WebView
-source={{
-    html:
-      "<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">" +
-      ArticleStore.article.content
-  }}
-/&gt;
-</code></pre><p>如果里面的图片超出里固定区域，可以顺便加上 img{width:100%;}。</p>
-<pre><code>&lt;WebView
-source={{
-    html:
-      "<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><style>img{width: 100%}</style> " +
-      ArticleStore.article.content
-  }}
-/&gt;;
-</code></pre></li>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token operator">&lt;</span>WebView
+source<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">{</span>
+    html<span class="token punctuation">:</span>
+      <span class="token string">"&lt;meta content="</span>width<span class="token operator">=</span>device<span class="token operator">-</span>width<span class="token punctuation">,</span> initial<span class="token operator">-</span>scale<span class="token operator">=</span><span class="token number">1.0</span><span class="token punctuation">,</span> maximum<span class="token operator">-</span>scale<span class="token operator">=</span><span class="token number">1.0</span><span class="token punctuation">,</span> user<span class="token operator">-</span>scalable<span class="token operator">=</span><span class="token number">0</span><span class="token string">" name="</span>viewport<span class="token string">">"</span> <span class="token operator">+</span>
+      ArticleStore<span class="token punctuation">.</span>article<span class="token punctuation">.</span>content
+  <span class="token punctuation">}</span><span class="token punctuation">}</span>
+<span class="token operator">/</span><span class="token operator">></span>
+</code></pre>
+<p>如果里面的图片超出里固定区域，可以顺便加上 img{width:100%;}。</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token operator">&lt;</span>WebView
+source<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">{</span>
+    html<span class="token punctuation">:</span>
+      <span class="token string">"&lt;meta content="</span>width<span class="token operator">=</span>device<span class="token operator">-</span>width<span class="token punctuation">,</span> initial<span class="token operator">-</span>scale<span class="token operator">=</span><span class="token number">1.0</span><span class="token punctuation">,</span> maximum<span class="token operator">-</span>scale<span class="token operator">=</span><span class="token number">1.0</span><span class="token punctuation">,</span> user<span class="token operator">-</span>scalable<span class="token operator">=</span><span class="token number">0</span><span class="token string">" name="</span>viewport<span class="token string">">&lt;style>img{width: 100%}&lt;/style> "</span> <span class="token operator">+</span>
+      ArticleStore<span class="token punctuation">.</span>article<span class="token punctuation">.</span>content
+  <span class="token punctuation">}</span><span class="token punctuation">}</span>
+<span class="token operator">/</span><span class="token operator">></span><span class="token punctuation">;</span>
+</code></pre>
+</li>
 <li><p>虚线只支持全边框（borderWidth），不支持单边的（borderTopWidth）。 而且虚线要想生效，还必须同时设置 borderWidth 和 borderRadius。<br>参考链接：<a href="https://github.com/facebook/react-native/issues/24224" target="_blank" rel="noopener">https://github.com/facebook/react-native/issues/24224</a></p>
 </li>
 <li><p>问题 Task :react-native-gesture-handler:compileDebugJavaWithJavac FAILED<br>参考链接：<a href="https://github.com/kmagiera/react-native-gesture-handler/issues/642" target="_blank" rel="noopener">https://github.com/kmagiera/react-native-gesture-handler/issues/642</a></p>
@@ -577,7 +579,7 @@ source={{
             <a class="close modal-close"><i class="fa fa-close"></i></a>
             <h4 class="reward-title">你的赏识是我前进的动力</h4>
             <div class="reward-content">
-                <div class="reward-tabs">
+                <!-- <div class="reward-tabs">
                     <ul class="tabs row">
                         <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
                         <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
@@ -588,7 +590,7 @@ source={{
                     <div id="wechat">
                         <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
@@ -618,7 +620,7 @@ source={{
                     </span>
                     <a href="http://yoursite.com" class="b-link-green">lingzi</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2019/08/12/react-native-2/" class="b-link-green">react-native</a>
+                    <a href="/2019/08/12/react-native-2/" class="b-link-green">react-native遇坑的陈列-2</a>
                 </p>
             </div>
         </div>
@@ -639,32 +641,28 @@ source={{
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
-            </div>
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/08/12/react-native-2/">
+                <a href="/2019/08/12/react-native-3/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="react-native">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="react-native遇坑的陈列-3">
                         
-                        <span class="card-title">react-native</span>
+                        <span class="card-title">react-native遇坑的陈列-3</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary">记录开始
-继上一篇继续
+之前都是在windows上开发，公司配的mac终于到了，现在开始用上mac。然而对于一个从未使用过mac的人来说，啊…亚历山大。
 
-环境说明react：16.8.3react-native：0.59.9react-navigation：3.11.0
-windowsandroid studio安卓模拟器 / 安卓手机    
-记录罗列
-显示富文本</div>
+环境说明react：16.8.3react-native：0.59.9react-navigati</div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-12
-                            </span>
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-12
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -677,7 +675,6 @@ windowsandroid studio安卓模拟器 / 安卓手机
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
@@ -704,23 +701,21 @@ windowsandroid studio安卓模拟器 / 安卓手机
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/08/12/react-native-3/">
+                <a href="/2019/07/07/react-native/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="react-native">
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="react-native遇坑的陈列">
                         
-                        <span class="card-title">react-native</span>
+                        <span class="card-title">react-native遇坑的陈列</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary">记录开始
-之前都是在windows上开发，公司配的mac终于到了，现在开始用上mac。然而对于一个从未使用过mac的人来说，啊…亚历山大。
-
-环境说明react：16.8.3react-native：0.59.9react-navigati</div>
+公司要做一个APP产品，自己会些皮毛，所以在开发的过程中还是遇到了比较多的问题（比如，一开始就安装不上啊，各种报红啊，怎么排查问题啊，轮播插件不响应啊，typescript不怎么会写啊…等等等）。顺便把mbox和typescrip</div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-12
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-07
                             </span>
                         <span class="publish-author">
                             
@@ -866,7 +861,7 @@ windowsandroid studio安卓模拟器 / 安卓手机
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">1.4k</span>
+                <span class="white-color">10.2k</span>
             
 
             
