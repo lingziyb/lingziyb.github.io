@@ -4,33 +4,6 @@
   
     
     <entry>
-      <title>react-native遇坑的陈列-4</title>
-      <link href="/2019/08/20/react-native-4/"/>
-      <url>/2019/08/20/react-native-4/</url>
-      
-        <content type="html"><![CDATA[<h3 id="记录开始"><a href="#记录开始" class="headerlink" title="记录开始"></a>记录开始</h3><blockquote><p>第四篇react-native 问题记录。</p></blockquote><h3 id="环境说明"><a href="#环境说明" class="headerlink" title="环境说明"></a>环境说明</h3><p>react：16.8.3<br>react-native：0.59.9<br>react-navigation：3.11.0</p><p>windows / mac<br>android studio安卓模拟器 / 安卓手机<br>xcode iphone模拟器 / iphone</p><h3 id="记录罗列"><a href="#记录罗列" class="headerlink" title="记录罗列"></a>记录罗列</h3><ol><li>发签名不一样。本地开发打包和给测试人员打包的签名不一样，导致调微信直接提示‘签名不一样’。</li></ol><p>解决方案如图所示：<br><img src="https://upload-images.jianshu.io/upload_images/3453108-30222aa36373603d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="4D056DEE-EA42-4901-B4E2-1414528222B3.png"></p><p>参考文章：<a href="https://blog.csdn.net/qq_28183203/article/details/72831395" target="_blank" rel="noopener">利用grade解决APP release版和debug版签名不同的问题</a>。</p><ol start="2"><li><p>注意：友盟分享成功的code值有所不同<br>Android：0<br>iOS：200</p></li><li><p>浏览器debugger-ui，网络请求相关信息看不到，比如cookie里有没有token。<br>解决参考链接：<a href="https://github.com/jhen0409/react-native-debugger/issues/209" target="_blank" rel="noopener">https://github.com/jhen0409/react-native-debugger/issues/209</a></p></li></ol><ol start="4"><li>得到本地图片绝对地址，number 转 string。</li></ol><p>一般引用图片是这样的：<code>import img from &quot;./../static/img.png&quot;</code> 或者 <code>require &quot;./../static/img.png&quot;</code>，然而它们的值打印出来是数字，所以要想得到图片的绝对地址，就得用 Image 的一个API：</p><p><img src="https://upload-images.jianshu.io/upload_images/3453108-20d501cc8f027ba8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 技术 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> app </tag>
-            
-            <tag> react-native </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>面纱</title>
       <link href="/2019/08/19/book-veil/"/>
       <url>/2019/08/19/book-veil/</url>
@@ -140,6 +113,35 @@
       <url>/2019/08/12/react-native-2/</url>
       
         <content type="html"><![CDATA[<h3 id="记录开始"><a href="#记录开始" class="headerlink" title="记录开始"></a>记录开始</h3><blockquote><p>继上一篇继续</p></blockquote><h3 id="环境说明"><a href="#环境说明" class="headerlink" title="环境说明"></a>环境说明</h3><p>react：16.8.3<br>react-native：0.59.9<br>react-navigation：3.11.0</p><p>windows<br>android studio安卓模拟器 / 安卓手机    </p><h3 id="记录罗列"><a href="#记录罗列" class="headerlink" title="记录罗列"></a>记录罗列</h3><ol><li><p>显示富文本：react-native-webview。但是字体显示不正常，要在接口返回的html里加上viewport 适配：</p><pre class=" language-javascript"><code class="language-javascript"><span class="token operator">&lt;</span>WebViewsource<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">{</span>    html<span class="token punctuation">:</span>      <span class="token string">"&lt;meta content="</span>width<span class="token operator">=</span>device<span class="token operator">-</span>width<span class="token punctuation">,</span> initial<span class="token operator">-</span>scale<span class="token operator">=</span><span class="token number">1.0</span><span class="token punctuation">,</span> maximum<span class="token operator">-</span>scale<span class="token operator">=</span><span class="token number">1.0</span><span class="token punctuation">,</span> user<span class="token operator">-</span>scalable<span class="token operator">=</span><span class="token number">0</span><span class="token string">" name="</span>viewport<span class="token string">">"</span> <span class="token operator">+</span>      ArticleStore<span class="token punctuation">.</span>article<span class="token punctuation">.</span>content  <span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token operator">/</span><span class="token operator">></span></code></pre><p>如果里面的图片超出里固定区域，可以顺便加上 img{width:100%;}。</p><pre class=" language-javascript"><code class="language-javascript"><span class="token operator">&lt;</span>WebViewsource<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">{</span>    html<span class="token punctuation">:</span>      <span class="token string">"&lt;meta content="</span>width<span class="token operator">=</span>device<span class="token operator">-</span>width<span class="token punctuation">,</span> initial<span class="token operator">-</span>scale<span class="token operator">=</span><span class="token number">1.0</span><span class="token punctuation">,</span> maximum<span class="token operator">-</span>scale<span class="token operator">=</span><span class="token number">1.0</span><span class="token punctuation">,</span> user<span class="token operator">-</span>scalable<span class="token operator">=</span><span class="token number">0</span><span class="token string">" name="</span>viewport<span class="token string">">&lt;style>img{width: 100%}&lt;/style> "</span> <span class="token operator">+</span>      ArticleStore<span class="token punctuation">.</span>article<span class="token punctuation">.</span>content  <span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token operator">/</span><span class="token operator">></span><span class="token punctuation">;</span></code></pre></li><li><p>虚线只支持全边框（borderWidth），不支持单边的（borderTopWidth）。 而且虚线要想生效，还必须同时设置 borderWidth 和 borderRadius。<br>参考链接：<a href="https://github.com/facebook/react-native/issues/24224" target="_blank" rel="noopener">https://github.com/facebook/react-native/issues/24224</a></p></li><li><p>问题 Task :react-native-gesture-handler:compileDebugJavaWithJavac FAILED<br>参考链接：<a href="https://github.com/kmagiera/react-native-gesture-handler/issues/642" target="_blank" rel="noopener">https://github.com/kmagiera/react-native-gesture-handler/issues/642</a></p></li><li><p>轮播插件：react-native-swiper。<br>遇到的问题是：onIndexChanged事件以及scrollBy都不怎么听话，各种问题（比如onIndexChanged时index索引可以为负数..），经常拆东墙补西墙。<br>最终问题点就在于一个：设置key！所有问题消失无踪影。<br><img src="https://upload-images.jianshu.io/upload_images/3453108-b30ace3d6018b40e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> app </tag>
+            
+            <tag> react-native </tag>
+            
+            <tag> typescript </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>react-native</title>
+      <link href="/2019/08/12/react-native-4/"/>
+      <url>/2019/08/12/react-native-4/</url>
+      
+        <content type="html"><![CDATA[<h3 id="记录开始"><a href="#记录开始" class="headerlink" title="记录开始"></a>记录开始</h3><blockquote><p>第三篇react-native 问题记录。</p></blockquote><h3 id="环境说明"><a href="#环境说明" class="headerlink" title="环境说明"></a>环境说明</h3><p>react：16.8.3<br>react-native：0.59.9<br>react-navigation：3.11.0</p><p>windows / mac<br>android studio安卓模拟器 / 安卓手机<br>xcode iphone模拟器 / iphone</p><h3 id="记录罗列"><a href="#记录罗列" class="headerlink" title="记录罗列"></a>记录罗列</h3><ol><li>发签名不一样。本地开发打包和给测试人员打包的签名不一样，导致调微信直接提示‘签名不一样’。</li></ol><p>解决方案如图所示：<br><img src="https://upload-images.jianshu.io/upload_images/3453108-30222aa36373603d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="4D056DEE-EA42-4901-B4E2-1414528222B3.png"></p><p>参考文章：<a href="https://blog.csdn.net/qq_28183203/article/details/72831395" target="_blank" rel="noopener">利用grade解决APP release版和debug版签名不同的问题</a>。</p><ol start="2"><li><p>注意：友盟分享成功的code值有所不同<br>Android：0<br>iOS：200</p></li><li><p>浏览器debugger-ui，网络请求相关信息看不到，比如cookie里有没有token。<br>解决参考链接：<a href="https://github.com/jhen0409/react-native-debugger/issues/209" target="_blank" rel="noopener">https://github.com/jhen0409/react-native-debugger/issues/209</a></p></li></ol><ol start="4"><li>得到本地图片绝对地址，number 转 string。</li></ol><p>一般引用图片是这样的：<code>import img from &quot;./../static/img.png&quot;</code> 或者 <code>require &quot;./../static/img.png&quot;</code>，然而它们的值打印出来是数字，所以要想得到图片的绝对地址，就得用 Image 的一个API：</p><p><img src="https://upload-images.jianshu.io/upload_images/3453108-20d501cc8f027ba8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p><p>官网API参考链接：<a href="https://facebook.github.io/react-native/docs/image" target="_blank" rel="noopener"> react-native 的 Image</a></p>]]></content>
       
       
       <categories>
