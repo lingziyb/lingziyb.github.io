@@ -141,7 +141,7 @@
       <link href="/2019/08/12/react-native-4/"/>
       <url>/2019/08/12/react-native-4/</url>
       
-        <content type="html"><![CDATA[<h3 id="记录开始"><a href="#记录开始" class="headerlink" title="记录开始"></a>记录开始</h3><blockquote><p>第三篇react-native 问题记录。</p></blockquote><h3 id="环境说明"><a href="#环境说明" class="headerlink" title="环境说明"></a>环境说明</h3><p>react：16.8.3<br>react-native：0.59.9<br>react-navigation：3.11.0</p><p>windows / mac<br>android studio安卓模拟器 / 安卓手机<br>xcode iphone模拟器 / iphone</p><h3 id="记录罗列"><a href="#记录罗列" class="headerlink" title="记录罗列"></a>记录罗列</h3><ol><li>发签名不一样。本地开发打包和给测试人员打包的签名不一样，导致调微信直接提示‘签名不一样’。</li></ol><p>解决方案如图所示：<br><img src="https://upload-images.jianshu.io/upload_images/3453108-30222aa36373603d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="4D056DEE-EA42-4901-B4E2-1414528222B3.png"></p><p>参考文章：<a href="https://blog.csdn.net/qq_28183203/article/details/72831395" target="_blank" rel="noopener">利用grade解决APP release版和debug版签名不同的问题</a>。</p><ol start="2"><li><p>注意：友盟分享成功的code值有所不同<br>Android：0<br>iOS：200</p></li><li><p>浏览器debugger-ui，网络请求相关信息看不到，比如cookie里有没有token。<br>解决参考链接：<a href="https://github.com/jhen0409/react-native-debugger/issues/209" target="_blank" rel="noopener">https://github.com/jhen0409/react-native-debugger/issues/209</a></p></li></ol><ol start="4"><li>得到本地图片绝对地址，number 转 string。</li></ol><p>一般引用图片是这样的：<code>import img from &quot;./../static/img.png&quot;</code> 或者 <code>require &quot;./../static/img.png&quot;</code>，然而它们的值打印出来是数字，所以要想得到图片的绝对地址，就得用 Image 的一个API：</p><p><img src="https://upload-images.jianshu.io/upload_images/3453108-20d501cc8f027ba8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p><p>官网API参考链接：<a href="https://facebook.github.io/react-native/docs/image" target="_blank" rel="noopener"> react-native 的 Image</a></p>]]></content>
+        <content type="html"><![CDATA[<h3 id="记录开始"><a href="#记录开始" class="headerlink" title="记录开始"></a>记录开始</h3><blockquote><p>第三篇react-native 问题记录。</p></blockquote><h3 id="环境说明"><a href="#环境说明" class="headerlink" title="环境说明"></a>环境说明</h3><p>react：16.8.3<br>react-native：0.59.9<br>react-navigation：3.11.0</p><p>windows / mac<br>android studio安卓模拟器 / 安卓手机<br>xcode iphone模拟器 / iphone</p><h3 id="记录罗列"><a href="#记录罗列" class="headerlink" title="记录罗列"></a>记录罗列</h3><ol><li>签名不一样。本地开发打包和给测试人员打包的签名不一样，导致调微信直接提示‘签名不一样’。</li></ol><p>解决方案如图所示：<br><img src="https://upload-images.jianshu.io/upload_images/3453108-30222aa36373603d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="4D056DEE-EA42-4901-B4E2-1414528222B3.png"></p><p>参考文章：<a href="https://blog.csdn.net/qq_28183203/article/details/72831395" target="_blank" rel="noopener">利用grade解决APP release版和debug版签名不同的问题</a>。</p><ol start="2"><li><p>注意：友盟分享成功的code值有所不同<br>Android：0<br>iOS：200</p></li><li><p>浏览器debugger-ui，网络请求相关信息看不到，比如cookie里有没有token。<br>解决参考链接：<a href="https://github.com/jhen0409/react-native-debugger/issues/209" target="_blank" rel="noopener">https://github.com/jhen0409/react-native-debugger/issues/209</a></p></li></ol><ol start="4"><li>得到本地图片绝对地址，number 转 string。</li></ol><p>一般引用图片是这样的：<code>import img from &quot;./../static/img.png&quot;</code> 或者 <code>require &quot;./../static/img.png&quot;</code>，然而它们的值打印出来是数字，所以要想得到图片的绝对地址，就得用 Image 的一个API：</p><p><img src="https://upload-images.jianshu.io/upload_images/3453108-20d501cc8f027ba8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p><p>官网API参考链接：<a href="https://facebook.github.io/react-native/docs/image" target="_blank" rel="noopener"> react-native 的 Image</a></p>]]></content>
       
       
       <categories>
@@ -187,6 +187,31 @@
             <tag> react-native </tag>
             
             <tag> typescript </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>月亮与六便士</title>
+      <link href="/2019/05/20/book-moon-six/"/>
+      <url>/2019/05/20/book-moon-six/</url>
+      
+        <content type="html"><![CDATA[<h3 id="为何看"><a href="#为何看" class="headerlink" title="为何看"></a>为何看</h3><blockquote><p>一本写给每个人的梦想之书，一部令平庸生活彻底解体的觉醒之作。</p></blockquote><p>上帝的磨盘磨得很慢，却磨得很细。</p><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>银行家查尔斯，人到中年，事业有成，为了追求内心隐秘的绘画梦想，突然抛妻别子，弃家出走。他深知：人的每一种身份都是一种自我绑架，唯有失去是通向自由之途。</p><p>在异国他乡，他贫病交加，对梦想却愈发坚定执着。他说：“我必须画画，就像溺水的人必须挣扎。”</p><p>在经历种种离奇遭遇后，他来到南太平洋的一座孤岛，同当地一位姑娘结婚生子，成功创作出一系列惊世杰作。就在此时，他被绝症和双目失明击倒，临死之前，他做出了让所有人震惊的决定……</p><h3 id="读后感"><a href="#读后感" class="headerlink" title="读后感"></a>读后感</h3><p>我的心中永远都有梦，好多好多梦，还来得及。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 书籍 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 灵魂 </tag>
             
         </tags>
       
