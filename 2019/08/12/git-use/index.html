@@ -7,11 +7,13 @@
     <meta name="keywords" content="git 用法积累, lingzi">
     <meta name="description" content="1. 远程仓库
 从远程库克隆
+
 git clone git@server-name:path/repo-name.git
 
 
 关联远程库
-git remote add origin git@server-name:path/repo-name">
+
+git remote add origin git@server-name:path/repo-na">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -410,7 +412,7 @@ git remote add origin git@server-name:path/repo-name">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        137
+                        177
                     </div>
                     
 
@@ -434,25 +436,27 @@ git remote add origin git@server-name:path/repo-name">
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h4 id="1-远程仓库"><a href="#1-远程仓库" class="headerlink" title="1. 远程仓库"></a>1. 远程仓库</h4><ul>
-<li><p>从远程库克隆</p>
+<li>从远程库克隆</li>
+</ul>
 <pre class=" language-javascript"><code class="language-javascript">git clone git@server<span class="token operator">-</span>name<span class="token punctuation">:</span>path<span class="token operator">/</span>repo<span class="token operator">-</span>name<span class="token punctuation">.</span>git
 </code></pre>
-</li>
-<li><p>关联远程库</p>
+<ul>
+<li>关联远程库</li>
+</ul>
 <pre class=" language-javascript"><code class="language-javascript">git remote add origin git@server<span class="token operator">-</span>name<span class="token punctuation">:</span>path<span class="token operator">/</span>repo<span class="token operator">-</span>name<span class="token punctuation">.</span>git
 </code></pre>
-</li>
-</ul>
 <h4 id="2-推送"><a href="#2-推送" class="headerlink" title="2. 推送"></a>2. 推送</h4><pre class=" language-javascript"><code class="language-javascript">git push origin master
 </code></pre>
-<h4 id="3-误删远程dev分支"><a href="#3-误删远程dev分支" class="headerlink" title="3. 误删远程dev分支"></a>3. 误删远程dev分支</h4><ul>
-<li>使用git log -g 找回之前提交的commit</li>
-<li>使用git branch dev commit_id命令用这个commit创建一个分支</li>
-<li>切换到dev分支</li>
+<h4 id="3-误删远程-dev-分支"><a href="#3-误删远程-dev-分支" class="headerlink" title="3. 误删远程 dev 分支"></a>3. 误删远程 dev 分支</h4><ul>
+<li>使用 git log -g 找回之前提交的 commit</li>
+<li>使用 git branch dev commit_id 命令用这个 commit 创建一个分支</li>
+<li>切换到 dev 分支</li>
 </ul>
 <p>参考文章：<br>git 误删分支恢复方法：<a href="https://blog.csdn.net/new03/article/details/84920771" target="_blank" rel="noopener">https://blog.csdn.net/new03/article/details/84920771</a></p>
-<h4 id="4-git提交了过大的文件-导致push报错"><a href="#4-git提交了过大的文件-导致push报错" class="headerlink" title="4. git提交了过大的文件  导致push报错"></a>4. git提交了过大的文件  导致push报错</h4><p><img src="https://upload-images.jianshu.io/upload_images/3453108-eab486789cc4462d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-<p>解决：<br><img src="https://upload-images.jianshu.io/upload_images/3453108-5051a5e70bf7437e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br>参考链接：<a href="https://blog.csdn.net/yimingsilence/article/details/81460278" target="_blank" rel="noopener">https://blog.csdn.net/yimingsilence/article/details/81460278</a></p>
+<h4 id="4-git-提交了过大的文件-导致-push-报错"><a href="#4-git-提交了过大的文件-导致-push-报错" class="headerlink" title="4. git 提交了过大的文件 导致 push 报错"></a>4. git 提交了过大的文件 导致 push 报错</h4><img src="/2019/08/12/git-use/big.png">
+<p>解决：<br><img src="/2019/08/12/git-use/delete-big.png"><br>参考链接：<a href="https://blog.csdn.net/yimingsilence/article/details/81460278" target="_blank" rel="noopener">https://blog.csdn.net/yimingsilence/article/details/81460278</a></p>
+<h4 id="5-LibreSSL-SSL-connect-SSL-ERROR-SYSCALL-in-connection-to-gitee-com-443"><a href="#5-LibreSSL-SSL-connect-SSL-ERROR-SYSCALL-in-connection-to-gitee-com-443" class="headerlink" title="5. LibreSSL SSL_connect: SSL_ERROR_SYSCALL in connection to gitee.com:443"></a>5. LibreSSL SSL_connect: SSL_ERROR_SYSCALL in connection to gitee.com:443</h4><img src="/2019/08/12/git-use/push-fail.png">
+<p>解决方案：<br><code>git config --global --unset http.proxy</code><br>参考链接：<br><a href="https://blog.csdn.net/daerzei/article/details/79528153" target="_blank" rel="noopener">git push github 失败，提示：SSL_connect: SSL_ERROR_SYSCALL in connection to github.com:443</a></p>
 
             </div>
             <hr/>
@@ -828,7 +832,7 @@ git remote add origin git@server-name:path/repo-name">
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">11.7k</span>
+                <span class="white-color">13.7k</span>
             
 
             
